@@ -1,0 +1,306 @@
+/* --- CSS RESET & VARIABLES --- */
+:root {
+    --primary-pink: #ff4d6d;
+    --soft-pink: #ffb3c1;
+    --bg-gradient: linear-gradient(135deg, #fff0f3 0%, #ffe0e6 100%);
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --text-dark: #590d22;
+    --gold: #d4af37;
+    --font-head: 'Playfair Display', serif;
+    --font-body: 'Poppins', sans-serif;
+    --font-hand: 'Dancing Script', cursive;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg-gradient);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    cursor: none;
+}
+
+/* --- CUSTOM CURSOR --- */
+.custom-cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary-pink);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: 0.1s;
+    mix-blend-mode: difference;
+}
+
+/* --- BACKGROUND HEARTS --- */
+#hearts-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* --- BUTTONS --- */
+.enter-btn, .music-toggle {
+    padding: 12px 30px;
+    background: var(--primary-pink);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 77, 109, 0.4);
+    transition: transform 0.3s;
+    z-index: 100;
+}
+.enter-btn:hover { transform: scale(1.05); }
+
+.music-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    z-index: 900;
+}
+
+/* --- LOADER --- */
+.loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #fff0f3;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.heart-loader {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-pink);
+    transform: rotate(45deg);
+    animation: heartbeat 1s infinite;
+    border-radius: 5px;
+}
+.loader p { margin-top: 20px; color: var(--primary-pink); font-family: var(--font-hand); }
+
+@keyframes heartbeat {
+    0%, 100% { transform: rotate(45deg) scale(1); }
+    50% { transform: rotate(45deg) scale(1.2); }
+}
+
+/* --- WELCOME SCREEN & 3D DIARY --- */
+.welcome-screen {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 1500px; /* Essential for 3D */
+    overflow: hidden;
+}
+
+.scene {
+    width: 300px;
+    height: 400px;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.diary-book {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateY(-10deg); /* Slight tilt initially */
+    transition: transform 1s ease;
+}
+
+/* COVER STYLES */
+.cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.back-cover {
+    background: #ffccd5;
+    transform: rotateY(0deg);
+    border: 4px solid #fff;
+}
+
+.front-cover {
+    background: linear-gradient(135deg, #ff758c 0%, #ff4d6d 100%);
+    transform: rotateY(0deg); /* Starts closed */
+    z-index: 2;
+    color: white;
+    text-align: center;
+    border: 4px solid #fff;
+    /* This sets the hinge origin to the left */
+    transform-origin: left center; 
+}
+
+.front-cover h1 { font-family: var(--font-head); font-size: 1.8rem; margin-bottom: 10px; }
+.front-cover p { font-family: var(--font-hand); font-size: 1.2rem; }
+.lock-icon { font-size: 2rem; margin-top: 15px; }
+
+/* INNER PAGES */
+.diary-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateZ(0px); /* Thickness of book */
+    backface-visibility: hidden;
+    background: #fff; /* Paper color */
+    transform-style: preserve-3d;
+}
+
+.page {
+    position: absolute;
+    width: 48%;
+    height: 95%;
+    top: 2.5%;
+    background: #fffbfb;
+    border-radius: 2px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+.left-page { left: 2%; transform: translateZ(1px); background: linear-gradient(90deg, #ddd, #fff); }
+.right-page { right: 2%; transform: translateZ(1px); background: linear-gradient(-90deg, #ddd, #fff); transform-origin: left; }
+
+/* FLYING PHOTO */
+.photo-pop-out {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    z-index: 1;
+    transform: scale(0.8);
+    opacity: 1;
+    /* Initially sits flat on the page, will pop UP and OUT */
+    transform-style: preserve-3d;
+}
+
+.photo-frame {
+    background: white;
+    padding: 10px 10px 30px 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transform: rotate(-5deg);
+    text-align: center;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.photo-caption {
+    font-family: var(--font-hand);
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+.intro-ui {
+    position: absolute;
+    bottom: 15%;
+    z-index: 10;
+}
+
+/* --- MAIN CONTENT GENERAL --- */
+.hidden { display: none; }
+
+.main-content {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.glass-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+}
+
+/* SECTIONS */
+.hero-section, .memories-section, .notes-section, .forever-section {
+    min-height: 100vh;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-title {
+    font-family: var(--font-head);
+    font-size: 2.5rem;
+    color: var(--primary-pink);
+    margin-bottom: 40px;
+}
+
+.cinematic-title {
+    font-family: var(--font-head);
+    font-size: 3.5rem;
+    text-align: center;
+    line-height: 1.2;
+    color: var(--text-dark);
+}
+
+/* MEMORIES GRID */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    width: 90%;
+    max-width: 1000px;
+}
+
+.polaroid {
+    background: white;
+    padding: 15px 15px 40px 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transform: rotate(0deg);
+    transition: transform 0.3s;
+}
+.polaroid:hover { transform: scale(1.05) rotate(0deg); z-index: 2; }
+.polaroid img { width: 100%; height: 250px; object-fit: cover; }
+.polaroid p { font-family: var(--font-hand); margin-top: 15px; text-align: center; font-size: 1.3rem; }
+
+/* NOTES */
+.notes-container { width: 90%;

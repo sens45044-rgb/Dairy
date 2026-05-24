@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sreelela's Dream Diary 💖</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- Floating Hearts Canvas -->
+    <canvas id="hearts-canvas"></canvas>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="music/love.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Button -->
+    <div class="music-toggle" onclick="toggleMusic()">
+        🎵
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="heart-loader"></div>
+            <p>Loading Magic...</p>
+        </div>
+    </div>
+
+    <!-- Welcome Section -->
+    <section class="welcome-screen" id="welcome-section">
+
+        <div class="scene">
+
+            <div class="diary-book" id="diary-book">
+
+                <!-- Back Cover -->
+                <div class="cover back-cover"></div>
+
+                <!-- Inner Pages -->
+                <div class="diary-inner">
+
+                    <div class="page left-page"></div>
+                    <div class="page right-page"></div>
+
+                    <!-- Pop Out Photo -->
+                    <div class="photo-pop-out">
+
+                        <div class="photo-frame">
+
+                            <img src="https://i.ibb.co/qLpyHxfv/IMG-20260524-WA0013.jpg" alt="memory">
+
+                            <p class="photo-caption">
+                                The Day We Met 💖
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Front Cover -->
+                <div class="cover front-cover">
+
+                    <div class="cover-content">
+
+                        <h1>Sreelela's Diary</h1>
+
+                        <p>Private ❤️</p>
+
+                        <div class="lock-icon">
+                            🔒
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Button -->
+        <div class="intro-ui" id="intro-ui">
+
+            <button class="enter-btn" onclick="openDiary()">
+                Unlock Diary 💖
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content hidden" id="main-content">
+
+        <!-- Hero -->
+        <section class="hero-section">
+
+            <div class="glass-nav">
+
+                <h2>Sreelela 💖</h2>
+
+                <p>My Everything</p>
+
+            </div>
+
+            <div class="hero-text">
+
+                <h1 class="cinematic-title">
+                    Every Moment <br>
+                    With You
+                </h1>
+
+                <p class="fade-text">
+                    Scroll to see our story. 
+                     Scroll <br>
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- Memories -->
+        <section class="memories-section">
+
+            <h2 class="section-title">
+                Our Memories 📸
+            </h2>
+
+            <div class="photo-grid">
+
+                <!-- Card 1 -->
+                <div class="polaroid p1">
+
+                    <img src="https://i.ibb.co/zwSBGVd/IMG-20260524-WA0014.jpg">
+
+                    <p>Sunset  🌅</p>
+
+                </div>
+
+                <!-- Card 2 -->
+                <div class="polaroid p2">
+
+                    <img src="https://i.ibb.co/5gxP7y3y/IMG-20260524-WA0020.jpg">
+
+                    <p>Midnight Talks 🌙</p>
+
+                </div>
+
+                <!-- Card 3 -->
+                <div class="polaroid p3">
+
+                    <img src="https://i.ibb.co/Pz93ZQfw/IMG-20260524-WA0010.jpg">
+
+                    <p>Camping Vibes 🏕️</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Notes -->
+        <section class="notes-section">
+
+            <h2 class="section-title">
+                Notes for You ✉️
+            </h2>
+
+            <div class="notes-container">
+
+                <div class="note-card">
+
+                    <p class="handwriting">
+
+                        Dear Sreelela,
+                        <br><br>
+
+                        I never knew what perfection looked like
+                        until I saw your smile.
+
+                        You are the pink in my roses and the sparkle
+                        in my sky.
+
+                        <br><br>
+
+                        I love you more than words can type...
+
+                        <span class="heart-icon">
+                            💖
+                        </span>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Forever -->
+        <section class="forever-section" id="forever">
+
+            <div class="heart-container">
+
+                <div class="big-heart"></div>
+
+            </div>
+
+            <h1 class="forever-text">
+                Forever With You ❤️
+            </h1>
+
+            <p>
+                Sreelela 💖
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Main JS -->
+    <script src="script.js"></script>
+
+</body>
+</html>
